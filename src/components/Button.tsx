@@ -1,18 +1,19 @@
 import { ComponentPropsWithoutRef } from 'react';
 
-//This is a WRAPPER COMPONENT
-type ButtonProps = {
-  el: 'button';
-} & ComponentPropsWithoutRef<'button'>; //with using & ComponentPropsWithoutRef<'a'> we cannot use "href" property for button element
+type ButtonProps = ComponentPropsWithoutRef<'button'> & {
+  href?: never;
+};
 
-type AnchorProps = {
-  el: 'anchor';
-} & ComponentPropsWithoutRef<'a'>;
+type AnchorProps = ComponentPropsWithoutRef<'a'> & {
+  href?: string;
+};
+
+function isAnchorProps(props: ButtonProps | AnchorProps): props is AnchorProps {
+  return 'href' in props;
+}
 
 export default function Button(props: ButtonProps | AnchorProps) {
-  //const {el,...otherProps} =props; //TypeScript wouldn't understand that! It would give an error.
-
-  if (props.el === 'anchor') {
+  if (isAnchorProps(props)) {
     return <a className="button" {...props}></a>;
   }
 
