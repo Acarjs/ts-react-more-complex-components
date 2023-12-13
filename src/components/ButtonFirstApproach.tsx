@@ -1,9 +1,9 @@
-import { type ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef } from 'react'; //This type ComponentPropsWithoutRef can be used to get hold of the default props that are accepted by one of the built-in(button,a..., etc) elements.
 
 //This is a WRAPPER COMPONENT
 type ButtonProps = {
   el: 'button';
-} & ComponentPropsWithoutRef<'button'>; //with using & ComponentPropsWithoutRef<'a'> we cannot use "href" property for button element
+} & ComponentPropsWithoutRef<'button'>; //with using & ComponentPropsWithoutRef<'a'> we cannot use "href" property for button element.
 
 type AnchorProps = {
   el: 'anchor';
